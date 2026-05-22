@@ -14,7 +14,7 @@ export default function HomeScreen() {
 
     return (
         <ScrollView className='flex-1 bg-emerald-600'>
-            <StatusBar  barStyle="light-content"/>
+            <StatusBar  barStyle="light-content" />
             <View className='px-6 pt-12 pb-6'>
                 <Header />
                 <Text className='text-white text-5xl font-bold mb-2'>KES 178, 675</Text>

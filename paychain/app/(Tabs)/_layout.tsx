@@ -10,11 +10,11 @@ export default function TabLayout() {
             tabBarActiveTintColor: "#059669",
             tabBarInactiveTintColor: "#9CA3AF",
             tabBarStyle: {
-                backgroundColor: 'white',
+                backgroundColor: 'green',
                 borderTopWidth: 1,
                 borderTopColor: '#E5E7EB',
-                height: 65,
-                paddingBottom: 10,
+                height: 70,
+                paddingBottom: 9,
                 paddingTop: 5,
             },
             tabBarLabelStyle: {
@@ -27,6 +27,7 @@ export default function TabLayout() {
             name="home"
             options={{
                 title: 'HOME',
+                headerShown: false,
                 tabBarIcon: ({color, size}) => <Home size={size} color={color}/>,
             }}
              />

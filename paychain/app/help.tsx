@@ -41,7 +41,7 @@ export default function HelpScreen() {
         <View className="bg-white border border-gray-200 rounded-3xl p-6 mb-8">
           <Mail size={32} color="#059669" className="mb-4" />
           <Text className="text-gray-900 font-bold text-xl mb-2">Email Support</Text>
-          <Text className="text-gray-600 text-sm mb-4">hello@paychainke.co</Text>
+          <Text className="text-gray-600 text-sm mb-4">hello@paychainke.co.ke</Text>
           <TouchableOpacity className="border-2 border-gray-900 rounded-xl py-3 items-center">
             <Text className="text-gray-900 font-bold">Send Email</Text>
           </TouchableOpacity>
