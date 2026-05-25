@@ -1,0 +1,4 @@
+
+### Get current user
+GET http://localhost:4000/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3Nzk0NjgwNTEsImV4cCI6MTc3OTQ2OTg1MX0.ZPpjV5-z7oHV5yzxc_zrI2BPmaUEdSmCCJOBgGRsy1c
