@@ -17,7 +17,7 @@ const signup = () => {
   const [success, setSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleChange = (field, value) => {
+  const handleChange = (field: any, value: any) => { //assigned type any
     setFormData((prev) => ({ ...prev, [field]: value }));
     if (error) setError("");
   };

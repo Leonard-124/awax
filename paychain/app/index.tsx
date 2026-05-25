@@ -119,7 +119,7 @@ export default function Loginscreen() {
         // await AsyncStorage.setItem("accessToken", data.accessToken);
         // await AsyncStorage.setItem("refreshToken", data.refreshToken);
 
-        router.replace("/(tabs)/home");
+        router.replace("/veryfy_kyc");
       } else {
         setError(data.error || "Login failed");
       }
