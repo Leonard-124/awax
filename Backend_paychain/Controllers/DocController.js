@@ -70,3 +70,5 @@ async function updateProduct(req, res) {
         res.status(403).json({error: err.message})
     }
 }
+
+async function deleteDoc(req, res)
