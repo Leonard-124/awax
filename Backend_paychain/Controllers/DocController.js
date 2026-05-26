@@ -35,7 +35,7 @@ async function getDocuments(req, res) {
     }
 }
 
-async function getProductById(req, res) {
+async function getDocById(req, res) {
     try{
         const document = await Doc.getdocById(req.params.id);
         if(!document) return res.status(404).json({error: "Document Not found"});
@@ -46,7 +46,7 @@ async function getProductById(req, res) {
 }
 
 
-async function updateProduct(req, res) {
+async function updateDocument(req, res) {
     try{
         const {BusinessCertificate, PinCertificate, NationalId, PassportCertificate, BankAccountStatement, BusinessPremisePhotograph} = req.body;
         let updates = {BusinessCertificate, PinCertificate, NationalId, PassportCertificate, BankAccountStatement, BusinessPremisePhotograph};
@@ -71,4 +71,16 @@ async function updateProduct(req, res) {
     }
 }
 
-async function deleteDoc(req, res)
+async function deleteDoc(req, res) {
+    try{
+        const document = await Doc.getdocById(req.params.id);
+        if(!document) return res.status(404).json({error: "Document Not Found"});
+        if (document.public_id) await cloudinary.uploader.destroy(document.public_id);
+        await Doc.deleteDoc(req.params.id);
+        res.json({message: "Deleted successfully"})
+    } catch (err) {
+
+    }
+}
+
+module.exports = {createDoc, getDocuments, getDocById, updateDocument, deleteDoc};
