@@ -93,6 +93,8 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, ScrollView, StatusBar } from "react-native";
 import { ArrowRight } from "lucide-react-native";
 import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage"
+
 
 export default function Loginscreen() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -114,11 +116,8 @@ export default function Loginscreen() {
       });
       const data = await res.json();
       if (res.ok) {
-        // AsyncStorage is the RN equivalent of localStorage
-        // import AsyncStorage from '@react-native-async-storage/async-storage'
-        // await AsyncStorage.setItem("accessToken", data.accessToken);
-        // await AsyncStorage.setItem("refreshToken", data.refreshToken);
-
+        await AsyncStorage.setItem("accessToken", data.accessToken);
+        await AsyncStorage.setItem("refreshToken", data.refreshToken);
         router.replace("/veryfy_kyc");
       } else {
         setError(data.error || "Login failed");
