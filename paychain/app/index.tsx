@@ -100,6 +100,7 @@ export default function Loginscreen() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (field: any, value: any) => { //changed implicit to any
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -109,7 +110,7 @@ export default function Loginscreen() {
   const handleSubmit = async () => {
     setError("");
     try {
-      const res = await fetch("http://localhost:4000/login", {
+      const res = await fetch("https://paychain-backend.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -124,6 +125,8 @@ export default function Loginscreen() {
       }
     } catch (err) {
       setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -152,9 +155,9 @@ export default function Loginscreen() {
 
         {error ? <Text className="text-red-500 mb-4">{error}</Text> : null}
 
-        <Text className="text-gray-700 font-medium mb-2 text-sm">M-PESA PHONE NUMBER</Text>
+        <Text className="text-gray-700 font-medium mb-2 text-sm">Enter Email</Text>
         <View className="flex-row items-center bg-white border border-gray-200 rounded-lg px-4 py-4 mb-6">
-          <Text className="text-gray-600 mr-2">+254</Text>
+          {/* <Text className="text-gray-600 mr-2">+254</Text> */}
           <TextInput
             className="flex-1 text-gray-900 text-lg"
             value={form.email}
@@ -182,7 +185,8 @@ export default function Loginscreen() {
           className="bg-emerald-700 rounded-2xl py-4 items-center flex-row justify-center"
           onPress={handleSubmit}
         >
-          <Text className="text-white font-bold text-lg mr-2">Sign In</Text>
+        
+          <Text className="text-white font-bold text-lg mr-2">{loading ? "Signing In..." : "Sign In"}</Text>
           <ArrowRight size={20} color="white" />
         </TouchableOpacity>
 

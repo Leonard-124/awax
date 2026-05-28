@@ -53,7 +53,7 @@ const signup = () => {
     setError("");
 
     try {
-      await axios.post("http://localhost:4000/register", {
+      await axios.post("https://paychain-backend.onrender.com/register", {
         username: formData.username,
         email: formData.email,
         phone: formData.phone,
