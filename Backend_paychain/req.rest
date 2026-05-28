@@ -8,10 +8,35 @@ POST http://localhost:4000/api/create
 Content-Type: application/json
 
 {
-    "BusinessCertificate": "XYZ Enterprises",
+    "BusinessCertificate": "Bono Enterprises",
     "PinCertificate": "XYZ Certificate",
-    "NationalId": "XYZid",
-    "PassportCertificate": "XYZ CERTIFICATE",
-    "BankAccountStatement": "XYD STATEMENT",
-    "BusinessPremisePhotograph": "XYZ pHOTOGRAPH"
+    "NationalId": "XYZid national ID",
+    "PassportCertificate": "Miza CERTIFICATE",
+    "BankAccountStatement": "Bono STATEMENT",
+    "BusinessPremisePhotograph": "Bono pHOTOGRAPH"
+}
+
+
+###getAllDocs
+GET http://localhost:4000/api/getDoc
+
+
+### Get Doc by id
+GET http://localhost:4000/api/get/3
+
+
+####Delete Doc
+DELETE http://localhost:4000/api/delete/2
+
+####Update the document
+PUT http://localhost:4000/api/update/1
+Content-Type: application/json
+
+{
+    "BusinessCertificate": "Bono XYZ",
+    "PinCertificate": "@34rtZEIN",
+    "NationalId": "123456",
+    "PassportCertificate": "Miza234@dot",
+    "BankAccountStatement": "1234566",
+    "BusinessPremisePhotograph": "Jielewi@123"
 }

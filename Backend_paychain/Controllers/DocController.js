@@ -3,9 +3,9 @@ const Doc = require("../Models/Docs.js");
 
 async function createDoc(req, res) {
   try {
-    if (!req.file) return res.status(400).json({ error: "Image file required" });
+    // if (!req.file) return res.status(400).json({ error: "Image file required" });
 
-    const uploadResult = await cloudinary.uploader.upload(req.file.path, { folder: "kyc" });
+    // const uploadResult = await cloudinary.uploader.upload(req.file.path, { folder: "kyc" });
 
     const {
       BusinessCertificate,
@@ -23,8 +23,8 @@ async function createDoc(req, res) {
       PassportCertificate,
       BankAccountStatement,
       BusinessPremisePhotograph,
-      imageUrl: uploadResult.secure_url,
-      publicId: uploadResult.public_id
+      // imageUrl: uploadResult.secure_url,
+      // publicId: uploadResult.public_id
     });
 
     res.status(201).json(document);

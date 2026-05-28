@@ -5,10 +5,10 @@ const router = express.Router();
 
 
 router.post("/create", createDoc);
-router.post("/update", updateDocument);
+router.put("/update/:id", updateDocument);
 router.get("/getDoc", getDocuments);
-router.get("/get", getDocById)
-router.delete("/delete", deleteDoc)
+router.get("/get/:id", getDocById)
+router.delete("/delete/:id", deleteDoc)
 
 
 
