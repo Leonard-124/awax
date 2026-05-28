@@ -319,7 +319,7 @@ const VerifyKyc = () => {
       </View>
 
       <Text
-        className="text-emerald-500 font-bold text-center mb-6"
+        className="text-emerald-500 font-bold text-center mb-10"
         onPress={() => router.push("/(Tabs)/home")}
       >
         Proceed to home
