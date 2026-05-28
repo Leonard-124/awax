@@ -1,0 +1,15 @@
+const {createDoc, getDocuments, getDocById, updateDocument, deleteDoc} = require("../Controllers/DocController.js")
+const express = require("express")
+
+const router = express.Router();
+
+
+router.post("/create", createDoc);
+router.post("/update", updateDocument);
+router.get("/getDoc", getDocuments);
+router.get("/get", getDocById)
+router.delete("/delete", deleteDoc)
+
+
+
+module.exports = router;

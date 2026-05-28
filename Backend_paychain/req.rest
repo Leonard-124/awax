@@ -2,3 +2,16 @@
 ### Get current user
 GET http://localhost:4000/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3Nzk0NjgwNTEsImV4cCI6MTc3OTQ2OTg1MX0.ZPpjV5-z7oHV5yzxc_zrI2BPmaUEdSmCCJOBgGRsy1c
+
+###Create Doc
+POST http://localhost:4000/api/create
+Content-Type: application/json
+
+{
+    "BusinessCertificate": "XYZ Enterprises",
+    "PinCertificate": "XYZ Certificate",
+    "NationalId": "XYZid",
+    "PassportCertificate": "XYZ CERTIFICATE",
+    "BankAccountStatement": "XYD STATEMENT",
+    "BusinessPremisePhotograph": "XYZ pHOTOGRAPH"
+}
