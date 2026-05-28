@@ -162,7 +162,6 @@ export default function Loginscreen() {
             className="flex-1 text-gray-900 text-lg"
             value={form.email}
             onChangeText={(text) => handleChange("email", text)}
-            keyboardType="phone-pad"
           />
         </View>
 
