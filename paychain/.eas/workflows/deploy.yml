@@ -1,0 +1,12 @@
+name: Deploy
+
+on:
+   push:
+    branches:
+      -main
+   jobs:
+     deploy_app:
+         type: deploy_app
+         params:
+           prod: true
+  
