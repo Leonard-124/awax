@@ -111,7 +111,11 @@ export default function RootLayout() {
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index"/>
       <Stack.Screen name="(tabs)"/>
-      <Stack.Screen name="swap"/>
+      <Stack.Screen name="swap" options={{
+        presentation: "formSheet",
+        sheetAllowedDetents: [0.2, 0.5, 1.0],
+        sheetLargestUndimmedDetentIndex: 1
+      }}/>
       <Stack.Screen name="bulk-payments"/>
       <Stack.Screen name="help" />
     </Stack>
