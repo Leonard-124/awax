@@ -7,7 +7,8 @@ import Header from '../../components/Header';
 import ActionButton from '../../components/ActionButton';
 import BalanceCard from '../../components/BalanceCard';
 import VerificationModal from '../../components/VerificationModal';
-
+import  RevenueCard  from '../../components/RevenueCard';
+import RevenueChart from '@/components/RevenueChat';
 
 export default function HomeScreen() {
     const [showVerificationModal, setShowVerificationModal] = useState(false);
@@ -67,8 +68,39 @@ export default function HomeScreen() {
             <BalanceCard type='operating' amount={18675} change={12.67}/>
             <BalanceCard type='usdc' amount={325.90} change={-4.3}/>
         </ScrollView>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} className='mb-6'>
+            <RevenueCard type='today' amount={2057} />
+            <RevenueCard type='month' amount={2057} />
+            <RevenueCard type='transactions' amount={2057} />
+            <RevenueCard type='score' amount={2057} />
+        </ScrollView>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} className='mb-6'>
+            <RevenueChart />
+        </ScrollView>
+        </View>
+        <VerificationModal
+        visible={showVerificationModal}
+        onClose={() => setShowVerificationModal(false)}
+        />
+        </ScrollView>
+    );
+}
 
-        <View className='bg-gray-50 rounded-2xl p-5'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {/* <View className='bg-gray-50 rounded-2xl p-5'>
             <Text className='text-gray-500 text-xs mb-1'>TODAY'S PERFORMANCE</Text>
         <View className='flex-row justify-between mt-3'>
             <View>
@@ -84,12 +116,4 @@ export default function HomeScreen() {
                 <Text className="text-gray-900 font-bold text-lg">KES 1,739</Text>
             </View>
         </View>
-        </View>
-        </View>
-        <VerificationModal
-        visible={showVerificationModal}
-        onClose={() => setShowVerificationModal(false)}
-        />
-        </ScrollView>
-    );
-}
+        </View> */}
