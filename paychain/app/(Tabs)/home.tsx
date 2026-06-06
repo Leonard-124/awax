@@ -9,6 +9,8 @@ import BalanceCard from '../../components/BalanceCard';
 import VerificationModal from '../../components/VerificationModal';
 import  RevenueCard  from '../../components/RevenueCard';
 import RevenueChart from '@/components/RevenueChat';
+import Transachist from '@/components/Transachist';
+import MoCard from '@/components/MoCard';
 
 export default function HomeScreen() {
     const [showVerificationModal, setShowVerificationModal] = useState(false);
@@ -74,8 +76,14 @@ export default function HomeScreen() {
             <RevenueCard type='transactions' amount={2057} />
             <RevenueCard type='score' amount={2057} />
         </ScrollView>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} className='mb-6'>
+        <ScrollView horizontal showsHorizontalScrollIndicator={true} className='mb-6'>
             <RevenueChart />
+        </ScrollView>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} className='mb-6'>
+            <Transachist />
+        </ScrollView>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} className='mb-6'>
+            <MoCard />
         </ScrollView>
         </View>
         <VerificationModal

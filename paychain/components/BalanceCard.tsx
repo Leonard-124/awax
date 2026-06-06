@@ -38,7 +38,7 @@ export default function BalanceCard({ type, amount, change, currency = 'KES' }: 
       )}
       <View className='bg-[#a8d6a2] p-1 rounded-xl text-center mt-4 text-sm text-[#6b6666] font-medium'>
         <TouchableOpacity className='' onPress={() =>setShowpop(true)}>
-          MOVE MONEY
+          {isOperating ? "MOVE MONEY" : "REQUEST USDC"}
         </TouchableOpacity>
       </View>
       {showpop && (
@@ -50,3 +50,122 @@ export default function BalanceCard({ type, amount, change, currency = 'KES' }: 
     </View>
   );
 }
+
+////////////////////////////////////////////////////////////////
+
+// import React, { useState } from "react";
+// import { View, Text, Pressable } from "react-native";
+// import { TrendingUp, TrendingDown } from "lucide-react-native";
+// import { router } from "expo-router";
+
+// interface BalanceCardProps {
+//   type: "operating" | "usdc";
+//   amount: number;
+//   change?: number;
+//   currency?: string;
+// }
+
+// export default function BalanceCard({
+//   type,
+//   amount,
+//   change,
+//   currency = "KES",
+// }: BalanceCardProps) {
+//   const isOperating = type === "operating";
+//   const [showpop, setShowpop] = useState(false);
+
+//   return (
+//     <View
+//       className={`${
+//         isOperating ? "bg-emerald-700" : "bg-gray-800"
+//       } rounded-3xl p-6 mr-4 w-64`}
+//     >
+//       <Text
+//         className={`${
+//           isOperating ? "text-emerald-200" : "text-gray-400"
+//         } text-xs mb-2`}
+//       >
+//         {isOperating ? "OPERATING BALANCE" : "USDC VAULT"}
+//       </Text>
+
+//       <Text className="text-white text-3xl font-bold mb-1">
+//         {isOperating
+//           ? `${currency} ${amount.toLocaleString()}`
+//           : amount.toFixed(2)}
+//       </Text>
+
+//       {!isOperating && (
+//         <Text className="text-gray-400 text-sm mb-3">USDC</Text>
+//       )}
+
+//       {change !== undefined && (
+//         <View className="flex-row items-center">
+//           {change > 0 ? (
+//             <TrendingUp size={16} color="#86efac" />
+//           ) : (
+//             <TrendingDown size={16} color="#fca5a5" />
+//           )}
+//           <Text
+//             className={`${
+//               isOperating ? "text-emerald-300" : "text-gray-400"
+//             } text-sm ml-2`}
+//           >
+//             {change > 0 ? "+" : ""}
+//             {change}% vs last month
+//           </Text>
+//         </View>
+//       )}
+
+//       {/* Main action button */}
+//       <Pressable
+//         onPress={() => setShowpop(true)}
+//         style={({ pressed }) => [
+//           {
+//             backgroundColor: pressed ? "#7fcf51" : "#a8d6a2",
+//           },
+//           {
+//             padding: 6,
+//             borderRadius: 12,
+//             marginTop: 16,
+//           },
+//         ]}
+//       >
+//         <Text style={{ textAlign: "center", color: "#6b6666", fontWeight: "500" }}>
+//           {isOperating ? "MOVE MONEY" : "REQUEST USDC"}
+//         </Text>
+//       </Pressable>
+
+//       {/* Popup menu */}
+//       {showpop && (
+//         <View className="bg-[#eaf7c9] rounded-3xl p-6 mr-4 w-64 mt-5">
+//           <Pressable
+//             onPressIn={() => router.replace("/send")}
+//             style={({ pressed }) => [
+//               {
+//                 backgroundColor: pressed ? "#bbf7d0" : "transparent", // green-100 on press
+//                 padding: 8,
+//                 borderRadius: 8,
+//                 marginBottom: 8,
+//               },
+//             ]}
+//           >
+//             <Text>{isOperating ? "SEND MONEY" : "REQUEST USDC"}</Text>
+//           </Pressable>
+
+//           <Pressable
+//             onPressIn={() => router.replace("/receive")}
+//             style={({ pressed }) => [
+//               {
+//                 backgroundColor: pressed ? "#bbf7d0" : "transparent",
+//                 padding: 8,
+//                 borderRadius: 8,
+//               },
+//             ]}
+//           >
+//             <Text>{isOperating ? "RECEIVE MONEY" : " "}</Text>
+//           </Pressable>
+//         </View>
+//       )}
+//     </View>
+//   );
+// }
