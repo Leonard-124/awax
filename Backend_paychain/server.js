@@ -5,6 +5,7 @@ const { connectPG } = require("./Configs/pg.js")
 
 const useRoute = require("./Routes/useRoute.js")
 const DocRoute = require("./Routes/DocRoute.js")
+const ContractRoute = require("./Routes/ContractRoute.js")
 
 const app = express()
 
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 
 app.use("/", useRoute)
 app.use("/api", DocRoute)
+app.use("/api", ContractRoute);
 
 app.listen(PORT, async () => {
     await connectPG()
