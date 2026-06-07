@@ -26,26 +26,26 @@ export default function HomeScreen() {
                     <Text className="text-emerald-300 text-xs">TILL NO: PU674DF</Text>
                 </View>
 
-            <View className='flex-row justify-between mb-6'>
+            <View className='flex-row justify-between mb-6 font-semibold bg-[#509747] pb-4 px-2 rounded-2xl shadow-md'>
                 <ActionButton
                 icon={TrendingDown}
-                label='COLLECT'
+                label='MYTILLS'
                 onPress={() => setShowVerificationModal(true)}
                  />
                  <ActionButton
                  icon={CreditCard}
-                 label='PAY'
+                 label='TRUST'
                  onPress={() => router.push('/bulk-payments')}
                  />
                  <ActionButton
                  icon={ArrowUpDown}
-                 label='SWAP'
+                 label='TRANSACTIONS'
                  onPress={() => router.push("/swap")}
                  />
                  <ActionButton 
                  icon={TrendingUp}
-                 label='ADVANCE'
-                 onPress={() => router.push('/(tabs)/advance')}
+                 label='WALLET'
+                 onPress={() => router.push('/swap')}
                  />
             </View>
             </View>

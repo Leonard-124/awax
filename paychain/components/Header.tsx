@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Pressable } from 'react-native';
 import { Bell } from "lucide-react-native";
+import { router } from 'expo-router';
 
 interface HeaderProps {
     storeName?: string;
@@ -19,7 +20,9 @@ export default function Header({
     <View className="flex-row items-center justify-between mb-8">
       <View className="flex-row items-center">
         <View className="w-10 h-10 bg-emerald-800 rounded-full items-center justify-center mr-3">
-          <Text className="text-white font-bold">{initials}</Text>
+          <Pressable onPress={() => router.push("/(Auth)/Profile")}>
+            <Text className="text-white font-bold">{initials}</Text>
+          </Pressable>
         </View>
         <View>
           <Text className="text-emerald-200 text-xs">{greeting}</Text>
