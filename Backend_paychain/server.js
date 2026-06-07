@@ -25,4 +25,4 @@ app.use("/api", ContractRoute);
 app.listen(PORT, async () => {
     await connectPG()
     console.log(`Server running on http://localhost:${PORT}`)
-})
+}) 
