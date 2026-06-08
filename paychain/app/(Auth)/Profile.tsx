@@ -85,9 +85,9 @@ const Profile = () => {
       if (!res.ok) return false;
 
       const data = await res.json();
-      await AsyncStorage.multiSet([
-        ["accessToken", data.accessToken],
-        ["refreshToken", data.refreshToken],
+      await Promise.all([
+        AsyncStorage.setItem("accessToken", data.accessToken),
+        AsyncStorage.setItem("refreshToken", data.refreshToken),
       ]);
       return true;
     } catch {
@@ -108,7 +108,10 @@ const Profile = () => {
     } catch {
       // Ignore logout API errors — still clear local storage
     } finally {
-      await AsyncStorage.multiRemove(["accessToken", "refreshToken"]);
+      await Promise.all([
+        AsyncStorage.removeItem("accessToken"),
+        AsyncStorage.removeItem("refreshToken"),
+      ]);
       router.replace("/");
     }
   };
@@ -181,7 +184,7 @@ const Profile = () => {
         {!profile.kycVerified && (
           <TouchableOpacity
             className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-4 mt-2 mb-6"
-            onPress={() => router.push("/veryfy_kyc")}
+            onPress={() => router.push("/Verifykyc")} //verify_kyc
           >
             <Text className="text-amber-800 font-semibold text-center">
               Complete KYC Verification →

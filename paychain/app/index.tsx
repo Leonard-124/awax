@@ -165,10 +165,8 @@ export default function LoginScreen() {
 
       if (res.ok) {
         // Persist both tokens
-        await AsyncStorage.multiSet([
-          ["accessToken", data.accessToken],
-          ["refreshToken", data.refreshToken],
-        ]);
+        await AsyncStorage.setItem("accessToken", data.accessToken); //multi
+        await AsyncStorage.setItem("refreshToken", data.refreshToken); //multi
 
         // Skip KYC screen if already verified
         if (data.kycVerified) {
