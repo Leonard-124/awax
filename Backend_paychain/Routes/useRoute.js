@@ -24,7 +24,7 @@
 /////////////////////////////////
 
 const express = require("express");
-const { register, login, logout, refresh, getMe } = require("../Controllers/UserController.js");
+const { register, login, logout, refresh, getMe } = require("../Controllers/userController.js");
 const { verifyToken } = require("../Middlewares/auth.js");
 
 const router = express.Router();
