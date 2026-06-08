@@ -120,8 +120,8 @@ import ActionButton from '../../components/ActionButton';
 import BalanceCard from '../../components/BalanceCard';
 import VerificationModal from '../../components/VerificationModal';
 import RevenueCard from '../../components/RevenueCard';
-import RevenueChart from '../../components/RevenueChart'; // Fixed: was RevenueChat
-import TransactionHistory from '../../components/TransactionHistory'; // Fixed: was Transachist
+import RevenueChart from '../../components/RevenueChat'; // Fixed: was RevenueChat
+import TransactionHistory from '../../components/Transachist'; // Fixed: was Transachist
 import MoCard from '../../components/MoCard';
 
 const BASE_URL = 'https://paychain-backend.onrender.com';
@@ -343,14 +343,14 @@ export default function HomeScreen() {
               if (!data.kycVerified) {
                 setShowVerificationModal(true);
               } else {
-                router.push('/my-tills');
+                router.push('/tills');
               }
             }}
           />
           <ActionButton
             icon={CreditCard}
             label="TRUST"
-            onPress={() => router.push('/trust')}
+            onPress={() => router.push('/trust_score')}
           />
           <ActionButton
             icon={ArrowUpDown}
@@ -372,7 +372,7 @@ export default function HomeScreen() {
         <TouchableOpacity
           className="bg-emerald-100 rounded-2xl p-5 mb-6 flex-row items-center justify-between"
           activeOpacity={0.8}
-          onPress={() => router.push('/merchant-status')}
+          onPress={() => router.push('/trust_score')} //merchant-status
         >
           <View>
             <Text className="text-emerald-900 font-bold text-lg mb-1">
@@ -389,7 +389,7 @@ export default function HomeScreen() {
         {/* Digital Ledgers */}
         <View className="flex-row justify-between items-center mb-4">
           <Text className="text-gray-900 font-bold text-lg">Digital Ledgers</Text>
-          <TouchableOpacity onPress={() => router.push('/ledgers')} activeOpacity={0.7}>
+          <TouchableOpacity onPress={() => router.push('/transactions')} activeOpacity={0.7}>
             <Text className="text-emerald-600 font-medium text-sm">VIEW ALL</Text>
           </TouchableOpacity>
         </View>
@@ -445,7 +445,7 @@ export default function HomeScreen() {
         onClose={() => setShowVerificationModal(false)}
         onVerify={() => {
           setShowVerificationModal(false);
-          router.push('/verify_kyc');
+          router.push('/Verifykyc'); //was verify_kyc
         }}
       />
     </ScrollView>
