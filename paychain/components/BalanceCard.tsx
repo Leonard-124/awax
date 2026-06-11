@@ -58,6 +58,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { TrendingUp, TrendingDown, DollarSign, Wallet } from 'lucide-react-native';
+import { useState } from 'react';
+import Pressable
 
 type BalanceCardProps = {
   type: 'operating' | 'usdc';
@@ -70,7 +72,7 @@ const CONFIG = {
     label: 'Operating Balance',
     currency: 'KES',
     icon: Wallet,
-    bgColor: 'bg-emerald-50',
+    bgColor: 'bg-gray-300',
     iconColor: '#059669',
     decimals: 0,
   },
@@ -78,7 +80,7 @@ const CONFIG = {
     label: 'USDC Balance',
     currency: 'USDC',
     icon: DollarSign,
-    bgColor: 'bg-blue-50',
+    bgColor: 'bg-gray-300',
     iconColor: '#2563eb',
     decimals: 2,
   },
@@ -103,14 +105,16 @@ const BalanceCard = ({ type, amount, change }: BalanceCardProps) => {
       style={{ width: 200 }}
     >
       <View className="flex-row items-center justify-between mb-3">
-        <Text className="text-gray-500 text-xs font-medium">{config.label}</Text>
+        <Text className="text-gray-700 text-xs font-medium">{config.label}</Text>
         <Icon size={16} color={config.iconColor} />
       </View>
 
       <Text className="text-gray-900 font-bold text-xl mb-2" numberOfLines={1}>
         {config.currency} {formattedAmount}
       </Text>
+      <View>
 
+      </View>
       <View className="flex-row items-center">
         <TrendIcon size={12} color={isPositive ? '#059669' : '#dc2626'} />
         <Text

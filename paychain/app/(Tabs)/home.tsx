@@ -631,7 +631,7 @@ export default function HomeScreen() {
         </View>
 
         {/* Action Buttons */}
-        <View className="flex-row justify-between mb-6 bg-[#509747] pb-4 px-2 rounded-2xl">
+        <View className="flex-row justify-between mb-6 bg-[#4d7c4f] shadow-md b-[#509747] pb-4 px-2 rounded-2xl">
           <ActionButton
             icon={TrendingDown}
             label="MY TILLS"
@@ -684,7 +684,7 @@ export default function HomeScreen() {
         <View className="flex-row justify-between items-center mb-4">
           <Text className="text-gray-900 font-bold text-lg">Digital Ledgers</Text>
           <TouchableOpacity onPress={() => router.push('/pay')} activeOpacity={0.7}>{/* ledger */}
-            <Text className="text-emerald-600 font-medium text-sm">VIEW ALL</Text>
+            <Text className="text-emerald-800 font-medium text-sm">VIEW ALL</Text>
           </TouchableOpacity>
         </View>
 
