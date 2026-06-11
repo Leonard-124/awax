@@ -325,9 +325,10 @@ async function logout(req, res) {
   }
 }
 
-async function getMe(req, res) {
+async function getMe(req, res) { //
   try {
     const user = await findUserById(req.userId);
+    console.log(user)
     if (!user) return res.status(404).json({ error: "User not found" });
 
     res.json({
@@ -342,5 +343,37 @@ async function getMe(req, res) {
     res.status(500).json({ error: "Failed to fetch user" });
   }
 }
+
+
+// const getMe = async (req, res) => {
+//   try {
+//     const user = await findUserById(req.user.id).select("-password"); //excludes password sort of.
+
+//     if (!user) {
+//       return res.status(404).json({
+//         success: false,
+//         error: "User not found.",
+//       });
+//     }
+
+//     res.status(200).json({
+//       success: true,
+//       user: {
+//         id: user._id,
+//         username: user.username,
+//         email: user.email,
+//         role: user.role,
+//         isEmailVerified: user.isEmailVerified,
+//         createdAt: user.createdAt,
+//       },
+//     });
+//   } catch (error) {
+//     console.error("Get user error:", error);
+//     res.status(500).json({
+//       success: false,
+//       error: "Failed to fetch user data.",
+//     });
+//   }
+// };
 
 module.exports = { register, login, refresh, logout, getMe };
