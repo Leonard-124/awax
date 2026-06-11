@@ -65,7 +65,7 @@ const Header = ({ username = '' }: HeaderProps) => {
         <TouchableOpacity
           onPress={() => router.push('/(Auth)/Profile')}
           activeOpacity={0.8}
-          className="w-10 h-10 rounded-full bg-emerald-500 items-center justify-center"
+          className="w-10 h-10 rounded-full bg-emerald-800 items-center justify-center"
         >
           <Text className="text-white font-bold text-base">{initial}</Text>
         </TouchableOpacity>

@@ -300,7 +300,7 @@ const RevenueChart = () => {
 
       {loading ? (
         <View
-          className="bg-gray-50 rounded-2xl items-center justify-center"
+          className="bg-gray-100 rounded-2xl items-center justify-center"
           style={{ width: CHART_WIDTH, height: CHART_HEIGHT + 20 }}
         >
           <ActivityIndicator color="#059669" />

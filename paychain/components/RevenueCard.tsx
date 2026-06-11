@@ -72,29 +72,29 @@ const CONFIG = {
   today: {
     label: "Today's Revenue",
     icon: Sun,
-    color: '#f59e0b',
-    bg: 'bg-amber-50',
+    color: '#f55e0b',
+    bg: 'bg-amber-300',
     format: (n: number) => `KES ${n.toLocaleString()}`,
   },
   month: {
     label: 'Monthly Revenue',
     icon: Calendar,
-    color: '#8b5cf6',
-    bg: 'bg-violet-50',
+    color: '#8b6cf6',
+    bg: 'bg-violet-300',
     format: (n: number) => `KES ${n.toLocaleString()}`,
   },
   transactions: {
     label: 'Transactions',
     icon: ArrowUpDown,
     color: '#0ea5e9',
-    bg: 'bg-sky-50',
+    bg: 'bg-sky-300',
     format: (n: number) => n.toLocaleString(),
   },
   score: {
     label: 'Trust Score',
     icon: Star,
-    color: '#10b981',
-    bg: 'bg-emerald-50',
+    color: '#10d921',
+    bg: 'bg-emerald-300',
     format: (n: number) => `${Math.min(100, Math.round(n))}/100`,
   },
 };
@@ -117,7 +117,7 @@ const RevenueCard = ({ type, amount }: RevenueCardProps) => {
       <Text className="text-gray-900 font-bold text-base mb-1" numberOfLines={1}>
         {config.format(amount)}
       </Text>
-      <Text className="text-gray-500 text-xs">{config.label}</Text>
+      <Text className="text-gray-700 text-xs">{config.label}</Text>
     </View>
   );
 };
