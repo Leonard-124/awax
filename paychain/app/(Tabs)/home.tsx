@@ -631,7 +631,7 @@ export default function HomeScreen() {
         </View>
 
         {/* Action Buttons */}
-        <View className="flex-row justify-between mb-6 bg-[#1b7a40] shadow-md b-[#509747] pb-4 px-2 rounded-2xl">
+        <View className="flex-row justify-between mb-6 bg-[#3d8154] shadow-md b-[#509747] pb-4 px-2 rounded-2xl">
           <ActionButton
             icon={TrendingDown}
             label="MY TILLS"
