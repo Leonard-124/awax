@@ -86,19 +86,168 @@
 // };
 
 // export default RevenueChart;
-/////////////////////////////////////////
+/////////////////////////////////////////////////////////2
+
+// import React, { useEffect, useState } from 'react';
+// import { View, Text, ActivityIndicator } from 'react-native';
+// import Svg, { Rect, Text as SvgText, Line } from 'react-native-svg';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// const BASE_URL = 'https://paychain-backend.onrender.com';
+
+// type WeeklyData = {
+//   day: string;
+//   amount: number;
+// };
+
+// const FALLBACK: WeeklyData[] = [
+//   { day: 'Mon', amount: 0 },
+//   { day: 'Tue', amount: 0 },
+//   { day: 'Wed', amount: 0 },
+//   { day: 'Thu', amount: 0 },
+//   { day: 'Fri', amount: 0 },
+//   { day: 'Sat', amount: 0 },
+//   { day: 'Sun', amount: 0 },
+// ];
+
+// const CHART_WIDTH = 320;
+// const CHART_HEIGHT = 140;
+// const BAR_GAP = 8;
+// const BOTTOM_LABEL_HEIGHT = 20;
+// const TOP_PADDING = 10;
+
+// const RevenueChart = () => {
+//   const [chartData, setChartData] = useState<WeeklyData[]>(FALLBACK);
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     const fetch7DayRevenue = async () => {
+//       try {
+//         const token = await AsyncStorage.getItem('accessToken');
+//         if (!token) return;
+
+//         const res = await fetch(`${BASE_URL}/api/revenue/weekly`, {
+//           headers: { Authorization: `Bearer ${token}` },
+//         });
+
+//         if (res.ok) {
+//           const data = await res.json();
+//           if (Array.isArray(data) && data.length > 0) {
+//             setChartData(data);
+//           }
+//         }
+//       } catch {
+//         // Use fallback data silently
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetch7DayRevenue();
+//   }, []);
+
+//   const maxAmount = Math.max(...chartData.map((d) => d.amount), 1);
+//   const barCount = chartData.length;
+//   const barWidth = (CHART_WIDTH - BAR_GAP * (barCount + 1)) / barCount;
+//   const chartBodyHeight = CHART_HEIGHT - BOTTOM_LABEL_HEIGHT - TOP_PADDING;
+
+//   return (
+//     <View>
+//       <View className="flex-row justify-between items-center mb-3">
+//         <Text className="text-gray-900 font-bold text-base">Weekly Revenue</Text>
+//         <Text className="text-gray-400 text-xs">Last 7 days</Text>
+//       </View>
+
+//       {loading ? (
+//         <View
+//           className="bg-gray-50 rounded-2xl items-center justify-center"
+//           style={{ width: CHART_WIDTH, height: CHART_HEIGHT + 20 }}
+//         >
+//           <ActivityIndicator color="#059669" />
+//         </View>
+//       ) : (
+//         <Svg
+//           width={CHART_WIDTH}
+//           height={CHART_HEIGHT + TOP_PADDING}
+//           viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT + TOP_PADDING}`}
+//         >
+//           {/* Baseline */}
+//           <Line
+//             x1={0}
+//             y1={CHART_HEIGHT - BOTTOM_LABEL_HEIGHT + TOP_PADDING}
+//             x2={CHART_WIDTH}
+//             y2={CHART_HEIGHT - BOTTOM_LABEL_HEIGHT + TOP_PADDING}
+//             stroke="#e5e7eb"
+//             strokeWidth={1}
+//           />
+
+//           {chartData.map((item, i) => {
+//             const barHeight = Math.max(
+//               4,
+//               (item.amount / maxAmount) * chartBodyHeight
+//             );
+//             const x = BAR_GAP + i * (barWidth + BAR_GAP);
+//             const y =
+//               TOP_PADDING + chartBodyHeight - barHeight;
+
+//             // Highlight today
+//             const today = new Date().toLocaleDateString('en-US', {
+//               weekday: 'short',
+//             });
+//             const isToday = item.day === today;
+
+//             return (
+//               <React.Fragment key={item.day}>
+//                 <Rect
+//                   x={x}
+//                   y={y}
+//                   width={barWidth}
+//                   height={barHeight}
+//                   rx={4}
+//                   fill={isToday ? '#059669' : '#d1fae5'}
+//                 />
+//                 <SvgText
+//                   x={x + barWidth / 2}
+//                   y={CHART_HEIGHT + TOP_PADDING - 4}
+//                   fontSize={10}
+//                   fill={isToday ? '#059669' : '#9ca3af'}
+//                   fontWeight={isToday ? '700' : '400'}
+//                   textAnchor="middle"
+//                 >
+//                   {item.day}
+//                 </SvgText>
+//                 {item.amount > 0 && (
+//                   <SvgText
+//                     x={x + barWidth / 2}
+//                     y={y - 4}
+//                     fontSize={9}
+//                     fill="#6b7280"
+//                     textAnchor="middle"
+//                   >
+//                     {item.amount >= 1000
+//                       ? `${(item.amount / 1000).toFixed(1)}k`
+//                       : item.amount.toString()}
+//                   </SvgText>
+//                 )}
+//               </React.Fragment>
+//             );
+//           })}
+//         </Svg>
+//       )}
+//     </View>
+//   );
+// };
+
+// export default RevenueChart;
+
+//////////////////////////////////////////////////////////////3
 
 import React, { useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import Svg, { Rect, Text as SvgText, Line } from 'react-native-svg';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { authedFetch } from '../app/(Auth)/auth';
 
-const BASE_URL = 'https://paychain-backend.onrender.com';
-
-type WeeklyData = {
-  day: string;
-  amount: number;
-};
+type WeeklyData = { day: string; amount: number };
 
 const FALLBACK: WeeklyData[] = [
   { day: 'Mon', amount: 0 },
@@ -123,26 +272,17 @@ const RevenueChart = () => {
   useEffect(() => {
     const fetch7DayRevenue = async () => {
       try {
-        const token = await AsyncStorage.getItem('accessToken');
-        if (!token) return;
-
-        const res = await fetch(`${BASE_URL}/api/revenue/weekly`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
+        const res = await authedFetch('/api/revenue/weekly');
         if (res.ok) {
           const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            setChartData(data);
-          }
+          if (Array.isArray(data) && data.length > 0) setChartData(data);
         }
       } catch {
-        // Use fallback data silently
+        // Use fallback silently
       } finally {
         setLoading(false);
       }
     };
-
     fetch7DayRevenue();
   }, []);
 
@@ -171,58 +311,33 @@ const RevenueChart = () => {
           height={CHART_HEIGHT + TOP_PADDING}
           viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT + TOP_PADDING}`}
         >
-          {/* Baseline */}
           <Line
-            x1={0}
-            y1={CHART_HEIGHT - BOTTOM_LABEL_HEIGHT + TOP_PADDING}
-            x2={CHART_WIDTH}
-            y2={CHART_HEIGHT - BOTTOM_LABEL_HEIGHT + TOP_PADDING}
-            stroke="#e5e7eb"
-            strokeWidth={1}
+            x1={0} y1={CHART_HEIGHT - BOTTOM_LABEL_HEIGHT + TOP_PADDING}
+            x2={CHART_WIDTH} y2={CHART_HEIGHT - BOTTOM_LABEL_HEIGHT + TOP_PADDING}
+            stroke="#e5e7eb" strokeWidth={1}
           />
-
           {chartData.map((item, i) => {
-            const barHeight = Math.max(
-              4,
-              (item.amount / maxAmount) * chartBodyHeight
-            );
+            const barHeight = Math.max(4, (item.amount / maxAmount) * chartBodyHeight);
             const x = BAR_GAP + i * (barWidth + BAR_GAP);
-            const y =
-              TOP_PADDING + chartBodyHeight - barHeight;
-
-            // Highlight today
-            const today = new Date().toLocaleDateString('en-US', {
-              weekday: 'short',
-            });
+            const y = TOP_PADDING + chartBodyHeight - barHeight;
+            const today = new Date().toLocaleDateString('en-US', { weekday: 'short' });
             const isToday = item.day === today;
 
             return (
               <React.Fragment key={item.day}>
-                <Rect
-                  x={x}
-                  y={y}
-                  width={barWidth}
-                  height={barHeight}
-                  rx={4}
-                  fill={isToday ? '#059669' : '#d1fae5'}
-                />
+                <Rect x={x} y={y} width={barWidth} height={barHeight} rx={4}
+                  fill={isToday ? '#059669' : '#d1fae5'} />
                 <SvgText
-                  x={x + barWidth / 2}
-                  y={CHART_HEIGHT + TOP_PADDING - 4}
-                  fontSize={10}
-                  fill={isToday ? '#059669' : '#9ca3af'}
-                  fontWeight={isToday ? '700' : '400'}
-                  textAnchor="middle"
+                  x={x + barWidth / 2} y={CHART_HEIGHT + TOP_PADDING - 4}
+                  fontSize={10} fill={isToday ? '#059669' : '#9ca3af'}
+                  fontWeight={isToday ? '700' : '400'} textAnchor="middle"
                 >
                   {item.day}
                 </SvgText>
                 {item.amount > 0 && (
                   <SvgText
-                    x={x + barWidth / 2}
-                    y={y - 4}
-                    fontSize={9}
-                    fill="#6b7280"
-                    textAnchor="middle"
+                    x={x + barWidth / 2} y={y - 4}
+                    fontSize={9} fill="#6b7280" textAnchor="middle"
                   >
                     {item.amount >= 1000
                       ? `${(item.amount / 1000).toFixed(1)}k`

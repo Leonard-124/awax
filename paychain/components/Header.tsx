@@ -63,7 +63,7 @@ const Header = ({ username = '' }: HeaderProps) => {
       <View className="flex-row items-center gap-3">
         {/* Avatar */}
         <TouchableOpacity
-          onPress={() => router.push('/profile')}
+          onPress={() => router.push('/(Auth)/Profile')}
           activeOpacity={0.8}
           className="w-10 h-10 rounded-full bg-emerald-500 items-center justify-center"
         >
@@ -80,11 +80,11 @@ const Header = ({ username = '' }: HeaderProps) => {
 
       {/* Notifications */}
       <TouchableOpacity
-        onPress={() => router.push('/notifications')}
+        onPress={() => router.push('/pay')}  
         activeOpacity={0.8}
         className="w-10 h-10 rounded-full bg-emerald-700 items-center justify-center"
       >
-        <Bell size={18} color="white" />
+        <Bell size={18} color="white" /> 
       </TouchableOpacity>
     </View>
   );
