@@ -117,6 +117,9 @@ export default function RootLayout() {
         sheetLargestUndimmedDetentIndex: 1
       }}/>
       <Stack.Screen name="bulk-payments"/>
+      <Stack.Screen name="wallet"/>
+      <Stack.Screen name="transactions"/>
+      <Stack.Screen name="trust_score"/>
       <Stack.Screen name="help" />
     </Stack>
   )
