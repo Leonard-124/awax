@@ -592,7 +592,7 @@ export default function HomeScreen() {
 
   return (
     <ScrollView
-      className="flex-1 bg-emerald-600"
+      className="flex-1 bg-emerald-700"
       refreshControl={
         <RefreshControl
           refreshing={refreshing}
@@ -631,7 +631,7 @@ export default function HomeScreen() {
         </View>
 
         {/* Action Buttons */}
-        <View className="flex-row justify-between mb-6 bg-[#4d7c4f] shadow-md b-[#509747] pb-4 px-2 rounded-2xl">
+        <View className="flex-row justify-between mb-6 bg-[#4d7c72] shadow-md b-[#509747] pb-4 px-2 rounded-2xl">
           <ActionButton
             icon={TrendingDown}
             label="MY TILLS"
@@ -665,7 +665,7 @@ export default function HomeScreen() {
       <View className="bg-white rounded-t-3xl px-6 pt-6 pb-32">
 
         <TouchableOpacity
-          className="bg-emerald-100 rounded-2xl p-5 mb-6 flex-row items-center justify-between"
+          className="bg-emerald-50 shadow-sm rounded-2xl p-5 mb-6 flex-row items-center justify-between"
           activeOpacity={0.8}
           onPress={() => router.push('/trust_score')}
         >

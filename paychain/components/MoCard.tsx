@@ -218,16 +218,16 @@ const MoCard = () => {
   }, []);
 
   return (
-    <View className="bg-emerald-900 rounded-2xl p-5" style={{ minWidth: 300 }}>
+    <View className="bg-[#4f6b4a] rounded-2xl p-5" style={{ minWidth: 300 }}>
       <View className="flex-row items-center justify-between mb-4">
         <View className="flex-row items-center gap-2">
-          <View className="w-8 h-8 bg-emerald-700 rounded-xl items-center justify-center">
+          <View className="w-8 h-8 bg-green-800 rounded-xl items-center justify-center">
             <Smartphone size={16} color="#6ee7b7" />
           </View>
           <Text className="text-white font-bold text-sm">M-Pesa Overview</Text>
         </View>
         <TouchableOpacity onPress={() => router.push('/pay')} activeOpacity={0.7} className="flex-row items-center">
-          <Text className="text-emerald-400 text-xs mr-1">Details</Text>
+          <Text className="text-emerald-700 text-xs mr-1">Details</Text>
           <ChevronRight size={12} color="#34d399" />
         </TouchableOpacity>
       </View>
