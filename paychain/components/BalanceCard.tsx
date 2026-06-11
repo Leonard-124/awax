@@ -59,7 +59,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { TrendingUp, TrendingDown, DollarSign, Wallet } from 'lucide-react-native';
 import { useState } from 'react';
-import Pressable
+import { Pressable } from 'react-native';
+import { router } from 'expo-router';
 
 type BalanceCardProps = {
   type: 'operating' | 'usdc';
@@ -91,6 +92,7 @@ const BalanceCard = ({ type, amount, change }: BalanceCardProps) => {
   const Icon = config.icon;
   const isPositive = change >= 0;
   const TrendIcon = isPositive ? TrendingUp : TrendingDown;
+  const [show, setShow] = useState(false)
 
   const formattedAmount = amount.toLocaleString('en-KE', {
     minimumFractionDigits: config.decimals,
@@ -100,6 +102,7 @@ const BalanceCard = ({ type, amount, change }: BalanceCardProps) => {
   const formattedChange = `${isPositive ? '+' : ''}${change.toFixed(2)}%`;
 
   return (
+    <View className='flex flex-col'>
     <View
       className={`${config.bgColor} rounded-2xl p-5 mr-4`}
       style={{ width: 200 }}
@@ -112,9 +115,15 @@ const BalanceCard = ({ type, amount, change }: BalanceCardProps) => {
       <Text className="text-gray-900 font-bold text-xl mb-2" numberOfLines={1}>
         {config.currency} {formattedAmount}
       </Text>
-      <View>
-
+      <View className='rounded-md bg-[#516945] p-3'>
+        <Pressable onPressIn={() => setShow(!show)}>
+          <Text className='text-center'>{config.label === 'Operating Balance' && 'TRANSACT'}</Text>
+        </Pressable>
+        <Pressable onPress={() => router.push("/wallet")}>
+          <Text className='text-center'>{config.label === 'USDC Balance' && 'SWAP USDC'}</Text>
+        </Pressable>
       </View>
+      {config.label == 'Operating Balance' ? show : ""}
       <View className="flex-row items-center">
         <TrendIcon size={12} color={isPositive ? '#059669' : '#dc2626'} />
         <Text
@@ -126,6 +135,15 @@ const BalanceCard = ({ type, amount, change }: BalanceCardProps) => {
         </Text>
         <Text className="text-gray-400 text-xs ml-1">this month</Text>
       </View>
+    </View>
+          {show &&  (<View className='p-1 bg-[#4e4e4ec0]  top36 right52  rounded-md'>
+        <Pressable  >
+          <Text className='text-center bg-[#7cb17f9d] text-white'>SEND</Text>
+        </Pressable>
+        <Pressable >
+          <Text className='text-center'>RECEIVE</Text>
+        </Pressable>
+        </View>)}
     </View>
   );
 };
