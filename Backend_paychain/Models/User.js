@@ -1,3 +1,5 @@
+
+
 // const { pool } = require("../Configs/pg.js");
 
 // async function createUser({ username, email, phone, password }) {
@@ -28,7 +30,7 @@
 
 // async function findUserById(id) {
 //   const result = await pool.query(
-//     `SELECT id, username, email, phone, created_at FROM users WHERE id = $1`,
+//     `SELECT id, username, email, phone, kyc_verified, created_at FROM users WHERE id = $1`,
 //     [id]
 //   );
 //   return result.rows[0] || null;
@@ -49,13 +51,13 @@
 //   return result.rows[0] || null;
 // }
 
-// async function verifykyc () {
+// // Fixed: was missing comma between query string and params array
+// async function markKycVerified(userId) {
 //   const result = await pool.query(
-//     `INSERT into documents ( BusinessCertificate, PinCertificate, NationalId, PassportCertificate, BankAccountStatement, BusinessPremisePhotograph)
-//     VALUES ( $1, $2, $3, $4, $5, $6)`
-//     [BusinessCertificate, PinCertificate, NationalId, PassportCertificate,  BankAccountStatement, BusinessPremisePhotograph]
-//   )
-//   return result.rows[0]
+//     `UPDATE users SET kyc_verified = true WHERE id = $1 RETURNING id, kyc_verified`,
+//     [userId]
+//   );
+//   return result.rows[0];
 // }
 
 // module.exports = {
@@ -65,9 +67,11 @@
 //   findUserById,
 //   storeRefreshToken,
 //   getUserByRefreshToken,
-//   verifykyc
+//   markKycVerified,
 // };
-////////////////////////////////////////////
+
+
+//////////////////////////////////////////
 
 const { pool } = require("../Configs/pg.js");
 
@@ -97,9 +101,12 @@ async function findUserByPhone(phone) {
   return result.rows[0] || null;
 }
 
+// SELECT * — works regardless of which optional columns exist yet.
+// kyc_verified will be undefined if the migration hasn't run; callers
+// must use  (user.kyc_verified ?? false)  not  user.kyc_verified || false
 async function findUserById(id) {
   const result = await pool.query(
-    `SELECT id, username, email, phone, kyc_verified, created_at FROM users WHERE id = $1`,
+    `SELECT * FROM users WHERE id = $1`,
     [id]
   );
   return result.rows[0] || null;
@@ -120,10 +127,9 @@ async function getUserByRefreshToken(token) {
   return result.rows[0] || null;
 }
 
-// Fixed: was missing comma between query string and params array
 async function markKycVerified(userId) {
   const result = await pool.query(
-    `UPDATE users SET kyc_verified = true WHERE id = $1 RETURNING id, kyc_verified`,
+    `UPDATE users SET kyc_verified = true WHERE id = $1 RETURNING *`,
     [userId]
   );
   return result.rows[0];
