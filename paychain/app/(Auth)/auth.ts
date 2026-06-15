@@ -78,7 +78,7 @@ export async function authedFetch(
     // No token at all — go to login
     await clearTokens();
     router.replace('/');
-    throw new Error('SESSION_EXPIRED');
+    throw new Error('SESSION_EXPIRED!');
   }
 
   const makeRequest = (t: string) =>
