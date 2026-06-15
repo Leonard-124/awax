@@ -286,7 +286,7 @@ const Profile = () => {
     return (
       <View className="flex-1 bg-white items-center justify-center">
         <ActivityIndicator size="large" color="#059669" />
-        <Text className="text-gray-500 mt-3">Loading profile...</Text>
+        <Text className="text-gray-500 mt-3">Loading your profile...</Text>
       </View>
     );
   }
