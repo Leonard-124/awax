@@ -535,7 +535,7 @@ export default function HomeScreen() {
       const res = await authedFetch('/me');
 
       if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
+        const body = await res.json().catch(() => ({}));//
         throw new Error(body.error || 'Failed to load dashboard');
       }
 
