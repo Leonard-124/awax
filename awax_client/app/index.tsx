@@ -186,34 +186,22 @@ export default function LoginScreen() {
 
   return (
     <ScrollView
-      className="flex-1 bg-emerald-900"
+      className="flex-1 bg-[#535953]"
       keyboardShouldPersistTaps="handled"
     >
       <StatusBar barStyle="light-content" />
 
       {/* Hero */}
-      <View className="px-6 pt-20 pb-10">
-        <Text className="text-white text-sm font-medium mb-2">PayChain</Text>
-        <Text className="text-white text-sm mb-1">MERCHANT PORTAL</Text>
-        <Text className="text-white text-5xl font-bold mt-8 mb-2">Secured.</Text>
-        <Text className="text-emerald-300 text-5xl font-bold mb-2">Pay.</Text>
-        <Text className="text-white text-5xl font-bold">Grow.</Text>
+      <View className=" bg-[#d9d9d9] px-6 pt-20 pb-20 rounded-br-[150px]">
+        <Text className="text-black text-xl font-medium mb-2">AWAX</Text>
+        <Text className="text-black text-sm font-medium mb-2"> Secure onchain Agentic Payments</Text>
       </View>
 
       {/* Card */}
-      <View className="bg-white rounded-t-3xl px-6 pt-8 pb-20 min-h-screen">
-        <Text className="text-2xl font-bold text-gray-900 mb-2">
-          Sign in to your account
-        </Text>
-        <Text className="text-gray-600 mb-6">
-          Use your registered email and password to access the merchant portal.
-        </Text>
-
-        <View className="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded mb-6">
-          <Text className="text-emerald-800 text-sm">
-            No account? Contact your PayChain onboarding officer for access.
-          </Text>
-        </View>
+      <View className="bg-[#535953] px-6 pt-8 pb-20 ">
+        {/* <Text className="text-2xl font-bold text-white mb-2">
+          Sign in to your Awax account
+        </Text> */}
 
         {error ? (
           <View className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 mb-4">
@@ -221,8 +209,8 @@ export default function LoginScreen() {
           </View>
         ) : null}
 
-        <Text className="text-gray-700 font-medium mb-2 text-sm">
-          Email Address
+        <Text className="text-white font-medium mb-2 text-sm">
+          Email:
         </Text>
         <View className="flex-row items-center bg-white border border-gray-200 rounded-lg px-4 py-4 mb-6">
           <TextInput
@@ -237,7 +225,7 @@ export default function LoginScreen() {
           />
         </View>
 
-        <Text className="text-gray-700 font-medium mb-2 text-sm">Password</Text>
+        <Text className="text-white font-medium mb-2 text-sm">Password:</Text>
         <View className="flex-row items-center bg-white border border-gray-200 rounded-lg px-4 py-4 mb-2">
           <TextInput
             className="flex-1 text-gray-900 text-base"
@@ -256,12 +244,8 @@ export default function LoginScreen() {
           </TouchableOpacity>
         </View>
 
-        <Text className="text-gray-400 text-xs italic mb-6">
-          First time? Use your temporary password from the onboarding email.
-        </Text>
-
         <TouchableOpacity
-          className="bg-emerald-700 rounded-2xl py-4 items-center flex-row justify-center"
+          className="bg-[#353f10] rounded-2xl py-4 items-center flex-row justify-center"
           onPress={handleSubmit}
           disabled={loading}
           activeOpacity={0.8}
@@ -274,11 +258,16 @@ export default function LoginScreen() {
           </Text>
           {!loading && <ArrowRight size={20} color="white" />}
         </TouchableOpacity>
-
+        <View className="flex flex-col justify-center">
+          <Text className="text-white text-center">Or continue with:</Text>
+          <TouchableOpacity className="bg-[#353f10] rounded-xl py-2 items-center flex-row justify-center ">
+            <Text>Google</Text>
+            </TouchableOpacity>
+        </View>
         <View className="flex-row justify-center mt-4 gap-2">
-          <Text className="text-gray-600">Don't have an account?</Text>
+          <Text className="text-white">Don't have an account?</Text>
           <Text
-            className="text-emerald-600 font-bold text-base"
+            className="text-white font-bold text-base"
             onPress={() => router.navigate("/signup")}
           >
             Sign Up

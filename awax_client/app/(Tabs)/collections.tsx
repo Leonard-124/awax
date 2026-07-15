@@ -40,7 +40,8 @@
 //     </ScrollView>
 //   );
 // }
-///////////////////////////////////////////
+//////////////////////////////////////////
+
 import React, { useRef, useState } from "react";
 import { View, TouchableOpacity, Text, Alert } from "react-native";
 import { CameraView, CameraType, useCameraPermissions } from "expo-camera";

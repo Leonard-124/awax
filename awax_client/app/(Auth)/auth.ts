@@ -7,7 +7,7 @@ const BASE_URL = 'https://paychain-backend.onrender.com';
 export const TOKEN_KEYS = {
   access: 'accessToken',
   refresh: 'refreshToken',
-} as const;
+} as const; /*Read only  */
 
 /**
  * Retrieve the stored access token.
@@ -59,7 +59,7 @@ export async function tryRefresh(): Promise<string | null> {
 
     if (!data.accessToken || !data.refreshToken) return null;
 
-    await saveTokens(data.accessToken, data.refreshToken);
+    await saveTokens(data.accessToken, data.refreshToken); //we set tokens to localstorage
     return data.accessToken;
   } catch {
     return null;
